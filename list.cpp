@@ -74,31 +74,45 @@ void insertAfter(List &L, address P, address Prec){
         Prev(P) = Prec;
     }
 }
-
-void deleteFirst(List &L, address &P)
+// procedure DeleteFirst by Rizky Fadhillah
+void deleteFirst(list *L,address *P)
 {
-    P = First(L);
-    First(L) = Next(P);
-    Next(P) = NULL;
-}
-
-void deleteLast(List &L, address &P)
-{
-    if(Next(First(L)) == NULL)
+    *P=first(*L);
+    if(*P==NULL)
     {
-        deleteFirst(L,P);
+        cout<<"Data Kosong"<<endl;
     }
     else
     {
-        address Q = First(L);
-        while(Next(Next(Q)) != NULL)
-        {
-            Q = Next(Q);
-        }
-        P = Next(Q);
-        Next(Q) = NULL;
+        first(*L)=next(first(*L));
+        next(*P)=NULL;
+        prev(first(*L))=NULL;
+        next(*P)=NULL;
+        cout<<"TIDAK ADA LAGU "<<info(*P).judul<<endl;
     }
 }
+// procedure DeleteLast by Rizky Fadhillah
+void deleteLast(list *L,address *P)
+{
+    if((*L).first==NULL)
+    {
+        cout<<"Data Kosong"<<endl;
+    }
+    else if(next((*L).first)==NULL)
+    {
+        *P=(*L).first;
+        (*L).first=NULL;
+        (*L).last=NULL;
+        cout<<"TIDAK ADA LAGU "<<info(*P).judul<<endl;
+    }
+    else
+    {
+    *P=(*L).last;
+    (*L).last=prev((*L).last);
+    prev(*P)=NULL;
+    next((*L).last)=NULL;
+    cout<<"Tidak Ada Lagu "<<info(*P).judul<<endl;
+}}
 
 void deleteAfter(List &L, address &P, address &Prec)
 {
