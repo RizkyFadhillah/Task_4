@@ -74,6 +74,7 @@ void insertAfter(List &L, address P, address Prec){
         Prev(P) = Prec;
     }
 }
+
 // procedure DeleteFirst by Rizky Fadhillah
 void deleteFirst(list *L,address *P)
 {
@@ -112,13 +113,24 @@ void deleteLast(list *L,address *P)
     prev(*P)=NULL;
     next((*L).last)=NULL;
     cout<<"Tidak Ada Lagu "<<info(*P).judul<<endl;
-}}
+}
 
+//Procedure DeleteAfter by Rizky Fadhillah
 void deleteAfter(List &L, address &P, address &Prec)
 {
-    P = Next(Prec);
-    Next(Prec) = Next(P);
-    Next(P) = NULL;
+    if(Prec==NULL) {
+        cout<<"Data Kosong"<<endl;
+    }
+    else if (Prec==First(L)) {
+        deleteFirst(L,P);
+    }
+    else {
+     P = Next(Prec);
+     Next(Prec) = Next(P);
+     Prev(Next(P))=Prec;
+     Next(P) = NULL;
+     Prev(P) = NULL;
+    }
 }
 
 address findElm(List L, infotype x){
